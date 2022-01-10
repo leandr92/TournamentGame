@@ -43,7 +43,7 @@ server.get('/api', function(req, res) {
         }
 
         let gameObject = {
-            postiton: gameEngine.world.objects[element].position,
+            position: gameEngine.world.objects[element].position,
             type: type,
             id: gameEngine.world.objects[element].id,
             angle: gameEngine.world.objects[element].angle,
