@@ -40,7 +40,7 @@ export default class ShipActor {
             this.thrustEmitter.minStartRotation = this.shipContainerSprite.rotation * 180 / Math.PI + 180 - 1;
             this.thrustEmitter.maxStartRotation = this.shipContainerSprite.rotation * 180 / Math.PI + 180 + 1;
         }
-        if (this.explosionEmitter){
+        if (this.explosionEmitter) {
             this.explosionEmitter.update(delta * 0.001);
         }
 
@@ -48,15 +48,13 @@ export default class ShipActor {
 
     addThrustEmitter() {
         this.thrustEmitter = new PIXI.particles.Emitter(
-            this.backLayer,
-            [PIXI.loader.resources.smokeParticle.texture],
+            this.backLayer, [PIXI.loader.resources.smokeParticle.texture],
             ThrusterEmitterConfig
         );
         this.thrustEmitter.emit = false;
 
         this.explosionEmitter = new PIXI.particles.Emitter(
-            this.shipContainerSprite,
-            [PIXI.loader.resources.smokeParticle.texture],
+            this.shipContainerSprite, [PIXI.loader.resources.smokeParticle.texture],
             ExplosionEmitterConfig
         );
 
@@ -64,7 +62,7 @@ export default class ShipActor {
     }
 
     changeName(name) {
-        if (this.nameText != null){
+        if (this.nameText != null) {
             this.nameText.destroy();
         }
         this.nameText = new PIXI.Text(name, { fontFamily: 'arial', fontSize: '12px', fill: 'white' });
@@ -75,7 +73,7 @@ export default class ShipActor {
     }
 
     destroy() {
-        return new Promise((resolve) =>{
+        return new Promise((resolve) => {
             this.explosionEmitter.emit = true;
 
             if (this.nameText) this.nameText.destroy({ texture: false });
@@ -85,7 +83,7 @@ export default class ShipActor {
             this.thrustEmitter = null;
             this.shipSprite = null;
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.shipContainerSprite.destroy();
                 this.explosionEmitter.destroy();
                 resolve();

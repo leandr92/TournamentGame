@@ -1,9 +1,11 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _lanceGg = require("lance-gg");
 
@@ -11,39 +13,59 @@ var _Utils = _interopRequireDefault(require("./../common/Utils"));
 
 var _Ship = _interopRequireDefault(require("../common/Ship"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } Object.defineProperty(subClass, "prototype", { value: Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }), writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 var PIXI = null;
 
 /**
  * Renderer for the Spaaace client - based on Pixi.js
  */
-var SpaaaceRenderer =
-/*#__PURE__*/
-function (_Renderer) {
+var SpaaaceRenderer = /*#__PURE__*/function (_Renderer) {
   _inherits(SpaaaceRenderer, _Renderer);
+
+  var _super = _createSuper(SpaaaceRenderer);
+
+  // TODO: document
+  function SpaaaceRenderer(gameEngine, clientEngine) {
+    var _this;
+
+    _classCallCheck(this, SpaaaceRenderer);
+
+    _this = _super.call(this, gameEngine, clientEngine);
+    PIXI = require('pixi.js');
+    _this.sprites = {};
+    _this.isReady = false; // asset prefix
+
+    _this.assetPathPrefix = _this.gameEngine.options.assetPathPrefix ? _this.gameEngine.options.assetPathPrefix : ''; // these define how many gameWorlds the player ship has "scrolled" through
+
+    _this.bgPhaseX = 0;
+    _this.bgPhaseY = 0;
+    return _this;
+  }
 
   _createClass(SpaaaceRenderer, [{
     key: "ASSETPATHS",
@@ -57,28 +79,8 @@ function (_Renderer) {
         bg4: 'assets/clouds1.png',
         smokeParticle: 'assets/smokeparticle.png'
       };
-    } // TODO: document
-
-  }]);
-
-  function SpaaaceRenderer(gameEngine, clientEngine) {
-    var _this;
-
-    _classCallCheck(this, SpaaaceRenderer);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SpaaaceRenderer).call(this, gameEngine, clientEngine));
-    PIXI = require('pixi.js');
-    _this.sprites = {};
-    _this.isReady = false; // asset prefix
-
-    _this.assetPathPrefix = _this.gameEngine.options.assetPathPrefix ? _this.gameEngine.options.assetPathPrefix : ''; // these define how many gameWorlds the player ship has "scrolled" through
-
-    _this.bgPhaseX = 0;
-    _this.bgPhaseY = 0;
-    return _this;
-  }
-
-  _createClass(SpaaaceRenderer, [{
+    }
+  }, {
     key: "init",
     value: function init() {
       var _this2 = this;
@@ -109,7 +111,7 @@ function (_Renderer) {
 
           _this2.setupStage();
 
-          if (_Utils.default.isTouchDevice()) {
+          if (_Utils["default"].isTouchDevice()) {
             document.body.classList.add('touch');
           } else if (isMacintosh()) {
             document.body.classList.add('mac');
@@ -162,7 +164,7 @@ function (_Renderer) {
 
       this.elapsedTime = Date.now(); // debug
 
-      if ('showworldbounds' in _Utils.default.getUrlVars()) {
+      if ('showworldbounds' in _Utils["default"].getUrlVars()) {
         var graphics = new PIXI.Graphics();
         graphics.beginFill(0xFFFFFF);
         graphics.alpha = 0.1;
@@ -200,10 +202,8 @@ function (_Renderer) {
       var viewportSeesTopBound = this.camera.y > 0;
       var viewportSeesBottomBound = this.camera.y < this.viewportHeight - worldHeight;
 
-      var _arr = Object.keys(this.sprites);
-
-      for (var _i = 0; _i < _arr.length; _i++) {
-        var objId = _arr[_i];
+      for (var _i = 0, _Object$keys = Object.keys(this.sprites); _i < _Object$keys.length; _i++) {
+        var objId = _Object$keys[_i];
         var objData = this.gameEngine.world.objects[objId];
         var sprite = this.sprites[objId];
 
@@ -213,14 +213,14 @@ function (_Renderer) {
             sprite.actor.thrustEmitter.emit = !!objData.showThrust;
           }
 
-          if (objData instanceof _Ship.default && sprite != this.playerShip) {
+          if (objData instanceof _Ship["default"] && sprite != this.playerShip) {
             this.updateOffscreenIndicator(objData);
           }
 
           sprite.x = objData.position.x;
           sprite.y = objData.position.y;
 
-          if (objData instanceof _Ship.default) {
+          if (objData instanceof _Ship["default"]) {
             sprite.actor.shipContainerSprite.rotation = this.gameEngine.world.objects[objId].angle * Math.PI / 180;
           } else {
             sprite.rotation = this.gameEngine.world.objects[objId].angle * Math.PI / 180;
@@ -446,10 +446,8 @@ function (_Renderer) {
         }
       }
 
-      var _arr2 = Object.keys(data);
-
-      for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-        var id = _arr2[_i2];
+      for (var _i2 = 0, _Object$keys2 = Object.keys(data); _i2 < _Object$keys2.length; _i2++) {
+        var id = _Object$keys2[_i2];
         var scoreEl = scoreContainer.querySelector("[data-obj-id='".concat(id, "']")); // create score line if it doesn't exist
 
         if (scoreEl == null) {
@@ -525,7 +523,7 @@ function (_Renderer) {
   return SpaaaceRenderer;
 }(_lanceGg.Renderer);
 
-exports.default = SpaaaceRenderer;
+exports["default"] = SpaaaceRenderer;
 
 function getCentroid(objects) {
   var maxDistance = 500; // max distance to add to the centroid
@@ -537,13 +535,11 @@ function getCentroid(objects) {
   };
   var selectedShip = null;
 
-  var _arr3 = Object.keys(objects);
-
-  for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
-    var id = _arr3[_i3];
+  for (var _i3 = 0, _Object$keys3 = Object.keys(objects); _i3 < _Object$keys3.length; _i3++) {
+    var id = _Object$keys3[_i3];
     var obj = objects[id];
 
-    if (obj instanceof _Ship.default) {
+    if (obj instanceof _Ship["default"]) {
       if (selectedShip == null) selectedShip = obj;
       var objDistance = Math.sqrt(Math.pow(selectedShip.position.x - obj.position.y, 2) + Math.pow(selectedShip.position.y - obj.position.y, 2));
 

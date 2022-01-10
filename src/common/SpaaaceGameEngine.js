@@ -15,12 +15,12 @@ export default class SpaaaceGameEngine extends GameEngine {
         });
     }
 
-    registerClasses(serializer){
+    registerClasses(serializer) {
         serializer.registerClass(Ship);
         serializer.registerClass(Missile);
     }
 
-    initWorld(){
+    initWorld() {
         super.initWorld({
             worldWrap: true,
             width: 3000,
@@ -62,12 +62,35 @@ export default class SpaaaceGameEngine extends GameEngine {
 
         if (playerShip) {
             if (inputData.input == 'up') {
-                playerShip.accelerate(0.05);
+
+                var value = 0.05;
+
+                if (inputData.value != null) {
+                    value = inputData.value;
+                }
+
+                playerShip.accelerate(value);
                 playerShip.showThrust = 5; // show thrust for next steps.
+
             } else if (inputData.input == 'right') {
-                playerShip.turnRight(2.5);
+
+                value = 2.5;
+
+                if (inputData.value != null) {
+                    value = inputData.value;
+                }
+
+                playerShip.turnRight(value);
             } else if (inputData.input == 'left') {
-                playerShip.turnLeft(2.5);
+
+                value = 2.5;
+
+                if (inputData.value != null) {
+                    value = inputData.value;
+                }
+
+                playerShip.turnLeft(value);
+
             } else if (inputData.input == 'space') {
                 this.makeMissile(playerShip, inputData.messageIndex);
                 this.emit('fireMissile');
@@ -77,8 +100,8 @@ export default class SpaaaceGameEngine extends GameEngine {
 
     // Makes a new ship, places it randomly and adds it to the game world
     makeShip(playerId) {
-        let newShipX = Math.floor(Math.random()*(this.worldSettings.width-200)) + 200;
-        let newShipY = Math.floor(Math.random()*(this.worldSettings.height-200)) + 200;
+        let newShipX = Math.floor(Math.random() * (this.worldSettings.width - 200)) + 200;
+        let newShipY = Math.floor(Math.random() * (this.worldSettings.height - 200)) + 200;
 
         let ship = new Ship(this, null, {
             position: new TwoVector(newShipX, newShipY)

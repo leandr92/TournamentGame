@@ -1,6 +1,13 @@
 node_modules
 dist/bundle.js
 .idea/*
-
 *.trace
 yarn.lock
+.vscode/
+src/*
+src/client/clientEntryPoint.js
+src/client/ShipActor.js
+src/common/Ship.js
+src/common/SpaaaceGameEngine.js
+src/main.js
+src/server/SpaaaceServerEngine.js

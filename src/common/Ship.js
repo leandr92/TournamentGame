@@ -34,7 +34,7 @@ export default class Ship extends DynamicObject {
             this.fireLoop.destroy();
         }
 
-        if (this.onPreStep){
+        if (this.onPreStep) {
             this.gameEngine.removeListener('preStep', this.onPreStep);
             this.onPreStep = null;
         }
@@ -50,7 +50,7 @@ export default class Ship extends DynamicObject {
             if (sprite) {
                 if (sprite.actor) {
                     // removal "takes time"
-                    sprite.actor.destroy().then(()=>{
+                    sprite.actor.destroy().then(() => {
                         delete renderer.sprites[this.id];
                     });
                 } else {
@@ -64,7 +64,7 @@ export default class Ship extends DynamicObject {
     // no bending corrections on angle needed, angle is deterministic
     // position correction if less than world width/height
     get bending() {
-        return { angleLocal: { percent: 0.0 }, position: { max: 500.0 } };
+        return { angleLocal: { percent: 1.0 }, position: { max: 500.0 } };
     }
 
     static get netScheme() {
@@ -83,8 +83,7 @@ export default class Ship extends DynamicObject {
     }
 
 
-    destroy() {
-    }
+    destroy() {}
 
     attachAI() {
         this.isBot = true;
@@ -136,7 +135,7 @@ export default class Ship extends DynamicObject {
 
             let newVX = this.shortestVector(this.position.x, this.target.position.x, this.gameEngine.worldSettings.width);
             let newVY = this.shortestVector(this.position.y, this.target.position.y, this.gameEngine.worldSettings.height);
-            let angleToTarget = Math.atan2(newVX, newVY)/Math.PI* 180;
+            let angleToTarget = Math.atan2(newVX, newVY) / Math.PI * 180;
             angleToTarget *= -1;
             angleToTarget += 90; // game uses zero angle on the right, clockwise
             if (angleToTarget < 0) angleToTarget += 360;
