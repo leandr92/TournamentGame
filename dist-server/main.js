@@ -53,7 +53,11 @@ server.get('/api', function (req, res) {
 
     var gameObject = {
       postiton: gameEngine.world.objects[element].position,
-      type: type
+      type: type,
+      id: gameEngine.world.objects[element].id,
+      angle: gameEngine.world.objects[element].angle,
+      gameFieldWidth: gameEngine.worldSettings.width,
+      gameFieldHeight: gameEngine.worldSettings.height
     };
     gameObjects.push(gameObject);
   }
