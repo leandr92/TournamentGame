@@ -49,6 +49,7 @@ var Ship = /*#__PURE__*/function (_DynamicObject) {
 
     _this = _super.call(this, gameEngine, options, props);
     _this.showThrust = 0;
+    _this.destroed = false;
     return _this;
   }
 
@@ -125,7 +126,7 @@ var Ship = /*#__PURE__*/function (_DynamicObject) {
           percent: 1.0
         },
         position: {
-          max: 500.0
+          max: 500
         }
       };
     }
@@ -143,7 +144,10 @@ var Ship = /*#__PURE__*/function (_DynamicObject) {
     }
   }, {
     key: "destroy",
-    value: function destroy() {}
+    value: function destroy() {
+      this.destroed = true;
+      this.removeObjectFromWorld(this.id);
+    }
   }, {
     key: "attachAI",
     value: function attachAI() {

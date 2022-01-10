@@ -17,10 +17,11 @@ let requestHandler = server.listen(PORT, () => console.log(`Listening on ${ PORT
 const io = socketIO(requestHandler);
 
 // Game Instances
-const gameEngine = new SpaaaceGameEngine({ traceLevel: Lib.Trace.TRACE_NONE });
+const gameEngine = new SpaaaceGameEngine({ traceLevel: 0 });
 const serverEngine = new SpaaaceServerEngine(io, gameEngine, {
     debug: {},
     updateRate: 6,
+    // stepRate: 60,
     timeoutInterval: 0 // no timeout
 });
 
@@ -36,17 +37,19 @@ server.get('/api', function(req, res) {
 
         let type = "";
 
-        if (gameEngine.world.objects[element].playerId != req.query.id) {
+        let playerShip = gameEngine.world.objects[element];
+
+        if (playerShip.playerId != req.query.id) {
             type = "Enemy";
         } else {
             type = "Me";
         }
 
         let gameObject = {
-            position: gameEngine.world.objects[element].position,
+            position: playerShip.position,
             type: type,
-            id: gameEngine.world.objects[element].id,
-            angle: gameEngine.world.objects[element].angle,
+            id: playerShip.id,
+            angle: playerShip.angle,
             gameFieldWidth: gameEngine.worldSettings.width,
             gameFieldHeight: gameEngine.worldSettings.height
         }

@@ -25,11 +25,12 @@ var requestHandler = server.listen(PORT, function () {
 var io = socketIO(requestHandler); // Game Instances
 
 var gameEngine = new _SpaaaceGameEngine["default"]({
-  traceLevel: _lanceGg.Lib.Trace.TRACE_NONE
+  traceLevel: 0
 });
 var serverEngine = new _SpaaaceServerEngine["default"](io, gameEngine, {
   debug: {},
   updateRate: 6,
+  // stepRate: 60,
   timeoutInterval: 0 // no timeout
 
 });
@@ -44,18 +45,19 @@ server.get('/api', function (req, res) {
   for (var _i = 0, _Object$keys = Object.keys(gameEngine.world.objects); _i < _Object$keys.length; _i++) {
     var element = _Object$keys[_i];
     var type = "";
+    var playerShip = gameEngine.world.objects[element];
 
-    if (gameEngine.world.objects[element].playerId != req.query.id) {
+    if (playerShip.playerId != req.query.id) {
       type = "Enemy";
     } else {
       type = "Me";
     }
 
     var gameObject = {
-      position: gameEngine.world.objects[element].position,
+      position: playerShip.position,
       type: type,
-      id: gameEngine.world.objects[element].id,
-      angle: gameEngine.world.objects[element].angle,
+      id: playerShip.id,
+      angle: playerShip.angle,
       gameFieldWidth: gameEngine.worldSettings.width,
       gameFieldHeight: gameEngine.worldSettings.height
     };

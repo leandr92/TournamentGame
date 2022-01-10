@@ -66,7 +66,7 @@ export default class SpaaaceGameEngine extends GameEngine {
                 var value = 0.05;
 
                 if (inputData.value != null) {
-                    value = inputData.value;
+                    value = Number(inputData.value);
                 }
 
                 playerShip.accelerate(value);
@@ -77,7 +77,7 @@ export default class SpaaaceGameEngine extends GameEngine {
                 value = 2.5;
 
                 if (inputData.value != null) {
-                    value = inputData.value;
+                    value = Number(inputData.value);
                 }
 
                 playerShip.turnRight(value);
@@ -86,7 +86,7 @@ export default class SpaaaceGameEngine extends GameEngine {
                 value = 2.5;
 
                 if (inputData.value != null) {
-                    value = inputData.value;
+                    value = Number(inputData.value);
                 }
 
                 playerShip.turnLeft(value);

@@ -6,6 +6,7 @@ export default class Ship extends DynamicObject {
     constructor(gameEngine, options, props) {
         super(gameEngine, options, props);
         this.showThrust = 0;
+        this.destroed = false;
     }
 
     get maxSpeed() { return 3.0; }
@@ -64,7 +65,7 @@ export default class Ship extends DynamicObject {
     // no bending corrections on angle needed, angle is deterministic
     // position correction if less than world width/height
     get bending() {
-        return { angleLocal: { percent: 1.0 }, position: { max: 500.0 } };
+        return { angleLocal: { percent: 1.0 }, position: { max: 500 } };
     }
 
     static get netScheme() {
@@ -83,7 +84,11 @@ export default class Ship extends DynamicObject {
     }
 
 
-    destroy() {}
+    destroy() {
+
+        this.destroed = true;
+        this.removeObjectFromWorld(this.id);
+    }
 
     attachAI() {
         this.isBot = true;
