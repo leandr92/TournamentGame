@@ -69,7 +69,13 @@ export default class SpaaaceGameEngine extends GameEngine {
                     value = Number(inputData.value);
                 }
 
-                playerShip.accelerate(value);
+                let rad = playerShip.angle * (Math.PI / 180);
+                let dv = new TwoVector(Math.cos(rad), Math.sin(rad));
+                dv.multiplyScalar(value * 30);
+                playerShip.position.x += dv.x;
+                playerShip.position.y += dv.y;
+
+                //playerShip.accelerate(value);
                 playerShip.showThrust = 5; // show thrust for next steps.
 
             } else if (inputData.input == 'right') {

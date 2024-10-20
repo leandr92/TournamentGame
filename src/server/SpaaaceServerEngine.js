@@ -31,6 +31,7 @@ export default class SpaaaceServerEngine extends ServerEngine {
                 setTimeout(() => this.makeBot(), 5000);
             }
         });
+
     }
 
     // a player has connected
@@ -49,6 +50,15 @@ export default class SpaaaceServerEngine extends ServerEngine {
 
         // handle client restart requests
         socket.on('requestRestart', makePlayerShip);
+        // socket.on('api_move', (data) => {
+        //     this.makeInput(socket, data)
+        // });
+    }
+
+    makeInput(socket, data) {
+
+        this.gameEngine.processInput(data.InputData, data.playerId)
+
     }
 
     // a player has disconnected

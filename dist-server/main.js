@@ -39,7 +39,8 @@ server.get('/', function (req, res) {
 });
 server.get('/api', function (req, res) {
   //ar InputData = { input: "up" };
-  gameEngine.processInput(req.query, Number(req.query.id));
+  serverEngine.queueInputForPlayer(req.query, Number(req.query.id)); //gameEngine.processInput(req.query, Number(req.query.id));
+
   var gameObjects = [];
 
   for (var _i = 0, _Object$keys = Object.keys(gameEngine.world.objects); _i < _Object$keys.length; _i++) {
@@ -59,7 +60,8 @@ server.get('/api', function (req, res) {
       id: playerShip.id,
       angle: playerShip.angle,
       gameFieldWidth: gameEngine.worldSettings.width,
-      gameFieldHeight: gameEngine.worldSettings.height
+      gameFieldHeight: gameEngine.worldSettings.height,
+      step: gameEngine.world.stepCount
     };
     gameObjects.push(gameObject);
   }

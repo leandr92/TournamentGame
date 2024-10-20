@@ -35,7 +35,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 var nameGenerator = require('./NameGenerator');
 
-var NUM_BOTS = 3;
+var NUM_BOTS = 0;
 
 var SpaaaceServerEngine = /*#__PURE__*/function (_ServerEngine) {
   _inherits(SpaaaceServerEngine, _ServerEngine);
@@ -104,7 +104,14 @@ var SpaaaceServerEngine = /*#__PURE__*/function (_ServerEngine) {
       }; // handle client restart requests
 
 
-      socket.on('requestRestart', makePlayerShip);
+      socket.on('requestRestart', makePlayerShip); // socket.on('api_move', (data) => {
+      //     this.makeInput(socket, data)
+      // });
+    }
+  }, {
+    key: "makeInput",
+    value: function makeInput(socket, data) {
+      this.gameEngine.processInput(data.InputData, data.playerId);
     } // a player has disconnected
 
   }, {
